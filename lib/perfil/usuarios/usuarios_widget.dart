@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -238,16 +239,12 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                           children: [
                             FFButtonWidget(
                               onPressed: () async {
-                                context.pushNamed(
-                                  'PantallaIngresar',
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType:
-                                          PageTransitionType.topToBottom,
-                                    ),
-                                  },
-                                );
+                                GoRouter.of(context).prepareAuthEvent();
+                                await authManager.signOut();
+                                GoRouter.of(context).clearRedirectLocation();
+
+                                context.goNamedAuth(
+                                    'PantallaRegistro', mounted);
                               },
                               text: 'Cerrar Sesión',
                               options: FFButtonOptions(

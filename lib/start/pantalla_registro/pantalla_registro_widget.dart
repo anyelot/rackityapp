@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -29,9 +30,9 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
     _model = createModel(context, () => PantallaRegistroModel());
 
     _model.textController1 ??= TextEditingController();
-    _model.textController2 ??= TextEditingController();
-    _model.textController3 ??= TextEditingController();
-    _model.textController4 ??= TextEditingController();
+    _model.emailTextController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
+    _model.confirmPasswordTextController ??= TextEditingController();
   }
 
   @override
@@ -144,7 +145,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
             Container(
               width: 250.0,
               child: TextFormField(
-                controller: _model.textController2,
+                controller: _model.emailTextController,
                 autofocus: true,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -187,7 +188,8 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
                 textAlign: TextAlign.start,
-                validator: _model.textController2Validator.asValidator(context),
+                validator:
+                    _model.emailTextControllerValidator.asValidator(context),
               ),
             ),
             Divider(
@@ -197,7 +199,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
             Container(
               width: 250.0,
               child: TextFormField(
-                controller: _model.textController3,
+                controller: _model.passwordTextController,
                 autofocus: true,
                 obscureText: !_model.passwordVisibility1,
                 decoration: InputDecoration(
@@ -253,7 +255,8 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
                 textAlign: TextAlign.start,
-                validator: _model.textController3Validator.asValidator(context),
+                validator:
+                    _model.passwordTextControllerValidator.asValidator(context),
               ),
             ),
             Divider(
@@ -263,7 +266,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
             Container(
               width: 250.0,
               child: TextFormField(
-                controller: _model.textController4,
+                controller: _model.confirmPasswordTextController,
                 autofocus: true,
                 obscureText: !_model.passwordVisibility2,
                 decoration: InputDecoration(
@@ -319,7 +322,8 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
                 textAlign: TextAlign.start,
-                validator: _model.textController4Validator.asValidator(context),
+                validator: _model.confirmPasswordTextControllerValidator
+                    .asValidator(context),
               ),
             ),
             Divider(
@@ -375,15 +379,29 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
             ),
             FFButtonWidget(
               onPressed: () async {
-                context.pushNamed(
-                  'PantallaIngresar',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
+                GoRouter.of(context).prepareAuthEvent();
+                if (_model.passwordTextController.text !=
+                    _model.confirmPasswordTextController.text) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        'Passwords don\'t match!',
+                      ),
                     ),
-                  },
+                  );
+                  return;
+                }
+
+                final user = await authManager.createAccountWithEmail(
+                  context,
+                  _model.emailTextController.text,
+                  _model.passwordTextController.text,
                 );
+                if (user == null) {
+                  return;
+                }
+
+                context.goNamedAuth('PantallaIngresar', mounted);
               },
               text: 'Registrate',
               options: FFButtonOptions(
