@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "865610424482",
+    "firebase_url": "https://rackity-app-default-rtdb.firebaseio.com",
+    "project_id": "rackity-app",
+    "storage_bucket": "rackity-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865610424482:android:d72707a36cd643f23eb7fb",
+        "android_client_info": {
+          "package_name": "com.app.closetrackity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865610424482-g4vd7mg5crjs9h5n79aqa7f2bh8ro1lq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.closetrackity",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "865610424482-29v3eek0nejtjmesshcrnqaei9mlev8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPeKFh0zhQaRsQqrPbmG8APhWe2YacXEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865610424482-29v3eek0nejtjmesshcrnqaei9mlev8u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "865610424482-90v1t3e38p9rgiaen87n9m1g6vu110ff.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.rackityapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865610424482:android:81bbf155c7f29add3eb7fb",
+        "android_client_info": {
+          "package_name": "com.mycompany.rackityapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865610424482-vmg4jq44dj25t86nnahns5tb1gl9qn1p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.rackityapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "865610424482-29v3eek0nejtjmesshcrnqaei9mlev8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPeKFh0zhQaRsQqrPbmG8APhWe2YacXEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865610424482-29v3eek0nejtjmesshcrnqaei9mlev8u.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "865610424482-90v1t3e38p9rgiaen87n9m1g6vu110ff.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.rackityapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
