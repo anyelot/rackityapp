@@ -80,15 +80,15 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                       'Poppins',
                       color: Color(0xFF0F5C4B),
                       fontWeight: FontWeight.w600,
-                      fontSize: 50.0,
+                      fontSize: 30.0,
                       fontStyle: FontStyle.normal,
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 70.0,
+                  height: 50.0,
                   child: VerticalDivider(
-                    width: 60.0,
+                    width: 150.0,
                     thickness: 2.0,
                     color: Color(0x00EEEEEE),
                   ),
@@ -143,8 +143,8 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                   },
                   text: 'Prendas',
                   options: FFButtonOptions(
-                    width: 130.0,
-                    height: 40.0,
+                    width: 100.0,
+                    height: 45.0,
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
@@ -152,7 +152,7 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Poppins',
                           color: Color(0xFF0F5C54),
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                         ),
                     borderSide: BorderSide(
                       color: Colors.transparent,
@@ -174,7 +174,7 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                   },
                   text: 'Conjuntos',
                   options: FFButtonOptions(
-                    width: 125.0,
+                    width: 100.0,
                     height: 45.0,
                     padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     iconPadding:
@@ -183,7 +183,7 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Poppins',
                           color: Color(0xFF0F5C54),
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                         ),
                     borderSide: BorderSide(
                       color: Color(0xFF7DFFE3),
@@ -248,7 +248,7 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                   ),
                   Container(
                     width: 395.9,
-                    height: 530.1,
+                    height: 389.0,
                     decoration: BoxDecoration(
                       color: Colors.white,
                     ),

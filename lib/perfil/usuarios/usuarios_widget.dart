@@ -112,7 +112,7 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                 children: [
                   Container(
                     width: 395.9,
-                    height: 622.0,
+                    height: 455.0,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50.0),
@@ -122,7 +122,7 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Divider(
-                          height: 45.0,
+                          height: 30.0,
                           thickness: 1.0,
                           color: Color(0x00EEEEEE),
                         ),
@@ -191,7 +191,7 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                           ],
                         ),
                         Divider(
-                          height: 35.0,
+                          height: 10.0,
                           thickness: 1.0,
                           color: Color(0x00EEEEEE),
                         ),
@@ -228,7 +228,7 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                           ],
                         ),
                         Divider(
-                          height: 15.0,
+                          height: 10.0,
                           thickness: 1.0,
                           color: Color(0x00EEEEEE),
                         ),
