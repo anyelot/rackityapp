@@ -129,7 +129,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                 children: [
                   Container(
                     width: 395.9,
-                    height: 654.4,
+                    height: 490.0,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(50.0),
@@ -139,7 +139,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                       iconColor: Color(0xFF0F5C4B),
                       weekFormat: false,
                       weekStartsMonday: false,
-                      rowHeight: 100.0,
+                      rowHeight: 60.0,
                       onChange: (DateTimeRange? newSelectedDate) {
                         setState(
                             () => _model.calendarSelectedDay = newSelectedDate);
