@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>865610424482-90v1t3e38p9rgiaen87n9m1g6vu110ff.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.865610424482-90v1t3e38p9rgiaen87n9m1g6vu110ff</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>865610424482-g4vd7mg5crjs9h5n79aqa7f2bh8ro1lq.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAVnpJBGXTZuefIBmJZQ_ZcoxwuUyBowtw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>865610424482</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.mycompany.rackityapp</string>
+	<key>PROJECT_ID</key>
+	<string>rackity-app</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rackity-app.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:865610424482:ios:470b8f4b89b5cdc63eb7fb</string>
+	<key>DATABASE_URL</key>
+	<string>https://rackity-app-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
