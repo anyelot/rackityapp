@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -28,8 +29,8 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
     super.initState();
     _model = createModel(context, () => PantallaIngresarModel());
 
-    _model.textController1 ??= TextEditingController();
-    _model.textController2 ??= TextEditingController();
+    _model.emailTextController ??= TextEditingController();
+    _model.passwordTextController ??= TextEditingController();
   }
 
   @override
@@ -93,7 +94,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
             Container(
               width: 250.0,
               child: TextFormField(
-                controller: _model.textController1,
+                controller: _model.emailTextController,
                 autofocus: true,
                 obscureText: false,
                 decoration: InputDecoration(
@@ -136,7 +137,8 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
                 textAlign: TextAlign.start,
-                validator: _model.textController1Validator.asValidator(context),
+                validator:
+                    _model.emailTextControllerValidator.asValidator(context),
               ),
             ),
             Divider(
@@ -146,7 +148,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
             Container(
               width: 250.0,
               child: TextFormField(
-                controller: _model.textController2,
+                controller: _model.passwordTextController,
                 autofocus: true,
                 obscureText: !_model.passwordVisibility,
                 decoration: InputDecoration(
@@ -202,7 +204,8 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                 ),
                 style: FlutterFlowTheme.of(context).bodyMedium,
                 textAlign: TextAlign.start,
-                validator: _model.textController2Validator.asValidator(context),
+                validator:
+                    _model.passwordTextControllerValidator.asValidator(context),
               ),
             ),
             Divider(
@@ -282,15 +285,18 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
             ),
             FFButtonWidget(
               onPressed: () async {
-                context.pushNamed(
-                  'PrendasConj',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.fade,
-                    ),
-                  },
+                GoRouter.of(context).prepareAuthEvent();
+
+                final user = await authManager.signInWithEmail(
+                  context,
+                  _model.emailTextController.text,
+                  _model.passwordTextController.text,
                 );
+                if (user == null) {
+                  return;
+                }
+
+                context.goNamedAuth('PantallaIngresar', mounted);
               },
               text: 'Ingresar',
               options: FFButtonOptions(
