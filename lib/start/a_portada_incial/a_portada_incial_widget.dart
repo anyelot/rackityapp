@@ -73,14 +73,21 @@ class _APortadaIncialWidgetState extends State<APortadaIncialWidget>
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                'Rackity',
-                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Poppins',
-                      color: Color(0xFFFCA379),
-                      fontSize: 60.0,
-                      fontWeight: FontWeight.w500,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(30.0, 0.0, 30.0, 0.0),
+                child: Container(
+                  width: double.infinity,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    color: Color(0x00FFFFFF),
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: Image.asset(
+                        'assets/images/ra.png',
+                      ).image,
                     ),
+                  ),
+                ),
               ),
             ],
           ),

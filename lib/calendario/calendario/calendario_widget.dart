@@ -100,7 +100,7 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                 Text(
                   'Mi calendario',
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Josefin Sans',
                         color: Color(0xFF0F5C4B),
                         fontSize: 30.0,
                         fontWeight: FontWeight.w500,
@@ -118,7 +118,6 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
             ),
             Container(
               width: 389.7,
-              height: 832.3,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(45.0),
@@ -155,8 +154,6 @@ class _CalendarioWidgetState extends State<CalendarioWidget>
                     ),
                   ),
                   Container(
-                    width: 400.0,
-                    height: 138.6,
                     decoration: BoxDecoration(
                       color: Color(0xFF41B69E),
                       borderRadius: BorderRadius.circular(40.0),

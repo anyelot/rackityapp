@@ -11,3 +11,7 @@ export '/micloset/prenda/prendas_conj/prendas_conj_widget.dart'
     show PrendasConjWidget;
 export '/perfil/usuarios/usuarios_widget.dart' show UsuariosWidget;
 export '/calendario/calendario/calendario_widget.dart' show CalendarioWidget;
+export '/generador/generador/generador_widget.dart' show GeneradorWidget;
+export '/micloset/prenda/prenda/prenda_widget.dart' show PrendaWidget;
+export '/micloset/conjuntos/conjunto/conjunto_widget.dart' show ConjuntoWidget;
+export '/buscador/buscador/buscador_widget.dart' show BuscadorWidget;

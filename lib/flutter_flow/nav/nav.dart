@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
+import '../../backend/backend.dart';
 
 import '../../auth/base_auth_user_provider.dart';
 
@@ -112,6 +113,34 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Calendario',
           path: '/calendario',
           builder: (context, params) => CalendarioWidget(),
+        ),
+        FFRoute(
+          name: 'generador',
+          path: '/generador',
+          builder: (context, params) => GeneradorWidget(
+            top: params.getParam('top', ParamType.String),
+          ),
+        ),
+        FFRoute(
+          name: 'prenda',
+          path: '/prenda',
+          builder: (context, params) => PrendaWidget(
+            img: params.getParam(
+                'img', ParamType.DocumentReference, false, ['users', 'images']),
+          ),
+        ),
+        FFRoute(
+          name: 'conjunto',
+          path: '/conjunto',
+          builder: (context, params) => ConjuntoWidget(
+            conjunto: params.getParam('conjunto', ParamType.DocumentReference,
+                false, ['users', 'conjuntos']),
+          ),
+        ),
+        FFRoute(
+          name: 'Buscador',
+          path: '/buscador',
+          builder: (context, params) => BuscadorWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       urlPathStrategy: UrlPathStrategy.path,
@@ -233,6 +262,7 @@ class FFParameters {
     String paramName,
     ParamType type, [
     bool isList = false,
+    List<String>? collectionNamePath,
   ]) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -246,11 +276,7 @@ class FFParameters {
       return param;
     }
     // Return serialized value.
-    return deserializeParam<T>(
-      param,
-      type,
-      isList,
-    );
+    return deserializeParam<T>(param, type, isList, collectionNamePath);
   }
 }
 

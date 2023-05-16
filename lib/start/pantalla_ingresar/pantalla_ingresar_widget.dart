@@ -62,16 +62,24 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Rackity',
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Poppins',
-                    color: Color(0xFFFCA379),
-                    fontSize: 60.0,
-                    fontWeight: FontWeight.w500,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(30.0, 30.0, 30.0, 0.0),
+              child: Container(
+                width: double.infinity,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: Color(0x00FFFFFF),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: Image.asset(
+                      'assets/images/ra.png',
+                    ).image,
                   ),
+                ),
+              ),
             ),
             Divider(
+              height: 10.0,
               thickness: 1.0,
               color: Color(0x00EEEEEE),
             ),
@@ -80,7 +88,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
               child: Text(
                 'Bienvenido',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Josefin Sans',
                       color: Color(0xFF2F8C61),
                       fontSize: 15.0,
                       fontWeight: FontWeight.w600,
@@ -100,7 +108,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                 decoration: InputDecoration(
                   hintText: 'Usuario',
                   hintStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Josefin Sans',
                         color: Color(0xFF2F8C61),
                         fontWeight: FontWeight.w600,
                       ),
@@ -135,7 +143,10 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                   filled: true,
                   fillColor: Colors.white,
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Josefin Sans',
+                      color: Color(0xFF2F8C61),
+                    ),
                 textAlign: TextAlign.start,
                 validator:
                     _model.emailTextControllerValidator.asValidator(context),
@@ -154,7 +165,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                 decoration: InputDecoration(
                   hintText: 'Contraseña',
                   hintStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Josefin Sans',
                         color: Color(0xFF2F8C61),
                         fontWeight: FontWeight.w600,
                       ),
@@ -202,7 +213,10 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                     ),
                   ),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Josefin Sans',
+                      color: Color(0xFF2F8C61),
+                    ),
                 textAlign: TextAlign.start,
                 validator:
                     _model.passwordTextControllerValidator.asValidator(context),
@@ -239,7 +253,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                   Text(
                     'Recuerdame',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Josefin Sans',
                           color: Color(0xFF2F8C61),
                           fontWeight: FontWeight.w600,
                         ),
@@ -264,7 +278,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                       color: Color(0x004B39EF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Josefin Sans',
                                 color: Color(0xFF095132),
                                 fontWeight: FontWeight.w600,
                               ),
@@ -296,7 +310,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                   return;
                 }
 
-                context.goNamedAuth('PantallaIngresar', mounted);
+                context.pushNamedAuth('PrendasConj', mounted);
               },
               text: 'Ingresar',
               options: FFButtonOptions(
@@ -306,7 +320,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                 iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: Color(0xFFFF8E58),
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Josefin Sans',
                       color: Colors.white,
                       fontSize: 16.0,
                       fontWeight: FontWeight.w600,
@@ -327,7 +341,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                   Text(
                     'No tienes una cuenta?',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Josefin Sans',
                           color: Color(0xFF2F8C61),
                           fontWeight: FontWeight.w600,
                         ),
@@ -360,7 +374,7 @@ class _PantallaIngresarWidgetState extends State<PantallaIngresarWidget>
                       color: Color(0x004B39EF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Josefin Sans',
                                 color: Color(0xFF095132),
                                 fontWeight: FontWeight.w600,
                               ),

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -159,11 +160,11 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              'Usuario',
+                              currentUserUid,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Josefin Sans',
                                     color: Color(0xFF0F5C4B),
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.w500,
@@ -181,11 +182,11 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Text(
-                              'usuario@email.com',
+                              currentUserEmail,
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
-                                    fontFamily: 'Poppins',
+                                    fontFamily: 'Josefin Sans',
                                     fontSize: 14.0,
                                   ),
                             ),
@@ -216,7 +217,7 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Josefin Sans',
                                       color: Colors.white,
                                     ),
                                 borderSide: BorderSide(
@@ -243,8 +244,8 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                 await authManager.signOut();
                                 GoRouter.of(context).clearRedirectLocation();
 
-                                context.goNamedAuth(
-                                    'PantallaRegistro', mounted);
+                                context.pushNamedAuth(
+                                    'APortadaIncial', mounted);
                               },
                               text: 'Cerrar Sesión',
                               options: FFButtonOptions(
@@ -258,7 +259,7 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
-                                      fontFamily: 'Poppins',
+                                      fontFamily: 'Josefin Sans',
                                       color: Colors.white,
                                     ),
                                 borderSide: BorderSide(
@@ -335,8 +336,8 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                               color: Color(0xFF4AC7AC),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('generador');
                             },
                           ),
                           SizedBox(
@@ -358,8 +359,42 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                               color: Color(0xFFFCA379),
                               size: 45.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              final selectedMedia =
+                                  await selectMediaWithSourceBottomSheet(
+                                context: context,
+                                allowPhoto: true,
+                              );
+                              if (selectedMedia != null &&
+                                  selectedMedia.every((m) => validateFileFormat(
+                                      m.storagePath, context))) {
+                                setState(() => _model.isDataUploading = true);
+                                var selectedUploadedFiles = <FFUploadedFile>[];
+
+                                try {
+                                  selectedUploadedFiles = selectedMedia
+                                      .map((m) => FFUploadedFile(
+                                            name: m.storagePath.split('/').last,
+                                            bytes: m.bytes,
+                                            height: m.dimensions?.height,
+                                            width: m.dimensions?.width,
+                                            blurHash: m.blurHash,
+                                          ))
+                                      .toList();
+                                } finally {
+                                  _model.isDataUploading = false;
+                                }
+                                if (selectedUploadedFiles.length ==
+                                    selectedMedia.length) {
+                                  setState(() {
+                                    _model.uploadedLocalFile =
+                                        selectedUploadedFiles.first;
+                                  });
+                                } else {
+                                  setState(() {});
+                                  return;
+                                }
+                              }
                             },
                           ),
                           SizedBox(
@@ -381,8 +416,8 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                               color: Color(0xFF4AC7AC),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('Calendario');
                             },
                           ),
                           SizedBox(
@@ -404,8 +439,8 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                               color: Color(0xFF4AC7AC),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('Buscador');
                             },
                           ),
                           SizedBox(

@@ -64,14 +64,21 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Rackity',
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Poppins',
-                    color: Color(0xFFFCA379),
-                    fontSize: 60.0,
-                    fontWeight: FontWeight.w500,
+            Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(45.0, 30.0, 45.0, 0.0),
+              child: Container(
+                width: double.infinity,
+                height: 100.0,
+                decoration: BoxDecoration(
+                  color: Color(0x00FFFFFF),
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: Image.asset(
+                      'assets/images/ra.png',
+                    ).image,
                   ),
+                ),
+              ),
             ),
             Divider(
               thickness: 1.0,
@@ -82,7 +89,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
               child: Text(
                 'Ingresa tus datos',
                 style: FlutterFlowTheme.of(context).bodyMedium.override(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Josefin Sans',
                       color: Color(0xFF2F8C61),
                       fontSize: 15.0,
                       fontWeight: FontWeight.w600,
@@ -98,7 +105,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                 decoration: InputDecoration(
                   hintText: 'Usuario',
                   hintStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Josefin Sans',
                         color: Color(0xFF2F8C61),
                         fontWeight: FontWeight.w600,
                       ),
@@ -133,7 +140,10 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                   filled: true,
                   fillColor: Colors.white,
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Josefin Sans',
+                      color: Color(0xFF2F8C61),
+                    ),
                 textAlign: TextAlign.start,
                 validator: _model.textController1Validator.asValidator(context),
               ),
@@ -151,7 +161,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                 decoration: InputDecoration(
                   hintText: 'Correo Electronico',
                   hintStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Josefin Sans',
                         color: Color(0xFF2F8C61),
                         fontWeight: FontWeight.w600,
                       ),
@@ -186,7 +196,10 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                   filled: true,
                   fillColor: Colors.white,
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Josefin Sans',
+                      color: Color(0xFF2F8C61),
+                    ),
                 textAlign: TextAlign.start,
                 validator:
                     _model.emailTextControllerValidator.asValidator(context),
@@ -205,7 +218,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                 decoration: InputDecoration(
                   hintText: 'Contraseña',
                   hintStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Josefin Sans',
                         color: Color(0xFF2F8C61),
                         fontWeight: FontWeight.w600,
                       ),
@@ -253,7 +266,10 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                     ),
                   ),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Josefin Sans',
+                      color: Color(0xFF2F8C61),
+                    ),
                 textAlign: TextAlign.start,
                 validator:
                     _model.passwordTextControllerValidator.asValidator(context),
@@ -272,7 +288,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                 decoration: InputDecoration(
                   hintText: 'Confirmar contraseña',
                   hintStyle: FlutterFlowTheme.of(context).titleMedium.override(
-                        fontFamily: 'Poppins',
+                        fontFamily: 'Josefin Sans',
                         color: Color(0xFF2F8C61),
                         fontWeight: FontWeight.w600,
                       ),
@@ -320,7 +336,10 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                     ),
                   ),
                 ),
-                style: FlutterFlowTheme.of(context).bodyMedium,
+                style: FlutterFlowTheme.of(context).bodyMedium.override(
+                      fontFamily: 'Josefin Sans',
+                      color: Color(0xFF2F8C61),
+                    ),
                 textAlign: TextAlign.start,
                 validator: _model.confirmPasswordTextControllerValidator
                     .asValidator(context),
@@ -357,13 +376,13 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                   Text(
                     'Acepto  los Terminos de Uso \ny Condiciones, y la Politica de Privacidad',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Josefin Sans',
                           color: Color(0xFF2F8C61),
                           fontWeight: FontWeight.w600,
                         ),
                   ),
                   SizedBox(
-                    height: 100.0,
+                    height: 50.0,
                     child: VerticalDivider(
                       thickness: 1.0,
                       color: Color(0x00EEEEEE),
@@ -373,7 +392,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
               ),
             ),
             Divider(
-              height: 50.0,
+              height: 30.0,
               thickness: 1.0,
               color: Color(0x00EEEEEE),
             ),
@@ -411,7 +430,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                 iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                 color: Color(0xFFFF8E58),
                 textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Poppins',
+                      fontFamily: 'Josefin Sans',
                       color: Colors.white,
                       fontSize: 16.0,
                       fontWeight: FontWeight.w600,
@@ -432,7 +451,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                   Text(
                     'Ya tienes una cuenta?',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Josefin Sans',
                           color: Color(0xFF2F8C61),
                           fontWeight: FontWeight.w600,
                         ),
@@ -465,7 +484,7 @@ class _PantallaRegistroWidgetState extends State<PantallaRegistroWidget>
                       color: Color(0x004B39EF),
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Poppins',
+                                fontFamily: 'Josefin Sans',
                                 color: Color(0xFF095132),
                                 fontWeight: FontWeight.w600,
                               ),
