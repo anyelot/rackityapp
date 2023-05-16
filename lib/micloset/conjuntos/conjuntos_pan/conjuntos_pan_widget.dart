@@ -1,8 +1,13 @@
+import '/auth/firebase_auth/auth_util.dart';
+import '/backend/backend.dart';
+import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/upload_data.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -150,7 +155,7 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                         EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: Color(0x004B39EF),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Poppins',
+                          fontFamily: 'Josefin Sans',
                           color: Color(0xFF0F5C54),
                           fontSize: 15.0,
                         ),
@@ -168,35 +173,39 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                     color: Color(0x00EEEEEE),
                   ),
                 ),
-                FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  text: 'Conjuntos',
-                  options: FFButtonOptions(
-                    width: 100.0,
-                    height: 45.0,
-                    padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    iconPadding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: Color(0xFFB3FFEE),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF0F5C54),
-                          fontSize: 15.0,
-                        ),
-                    borderSide: BorderSide(
-                      color: Color(0xFF7DFFE3),
-                      width: 1.0,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(5.0, 3.0, 5.0, 3.0),
+                  child: FFButtonWidget(
+                    onPressed: () {
+                      print('Button pressed ...');
+                    },
+                    text: 'Conjuntos',
+                    options: FFButtonOptions(
+                      width: 100.0,
+                      height: 45.0,
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      iconPadding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      color: Color(0xFFB3FFEE),
+                      textStyle:
+                          FlutterFlowTheme.of(context).titleSmall.override(
+                                fontFamily: 'Josefin Sans',
+                                color: Color(0xFF0F5C54),
+                                fontSize: 15.0,
+                              ),
+                      borderSide: BorderSide(
+                        color: Color(0xFF7DFFE3),
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(18.0),
                     ),
-                    borderRadius: BorderRadius.circular(18.0),
                   ),
                 ),
               ],
             ),
             Container(
               width: 389.7,
-              height: 700.0,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).secondaryBackground,
                 borderRadius: BorderRadius.circular(45.0),
@@ -223,7 +232,7 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                             style: FlutterFlowTheme.of(context)
                                 .bodyMedium
                                 .override(
-                                  fontFamily: 'Poppins',
+                                  fontFamily: 'Josefin Sans',
                                   color: Color(0xFF0F5C54),
                                   fontSize: 20.0,
                                 ),
@@ -252,10 +261,119 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                     decoration: BoxDecoration(
                       color: Colors.white,
                     ),
+                    child: StreamBuilder<List<ConjuntosRecord>>(
+                      stream: queryConjuntosRecord(
+                        parent: currentUserReference,
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 40.0,
+                              height: 40.0,
+                              child: CircularProgressIndicator(
+                                color: FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          );
+                        }
+                        List<ConjuntosRecord> gridViewConjuntosRecordList =
+                            snapshot.data!;
+                        return GridView.builder(
+                          padding: EdgeInsets.zero,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 10.0,
+                            mainAxisSpacing: 10.0,
+                            childAspectRatio: 1.0,
+                          ),
+                          scrollDirection: Axis.vertical,
+                          itemCount: gridViewConjuntosRecordList.length,
+                          itemBuilder: (context, gridViewIndex) {
+                            final gridViewConjuntosRecord =
+                                gridViewConjuntosRecordList[gridViewIndex];
+                            return Container(
+                              width: 100.0,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: Image.asset(
+                                    'assets/images/Caja_Conjuntos_1.png',
+                                  ).image,
+                                ),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.pushNamed(
+                                    'conjunto',
+                                    queryParams: {
+                                      'conjunto': serializeParam(
+                                        gridViewConjuntosRecord.reference,
+                                        ParamType.DocumentReference,
+                                      ),
+                                    }.withoutNulls,
+                                  );
+                                },
+                                child: Stack(
+                                  children: [
+                                    Transform.rotate(
+                                      angle: 0.2618,
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(-0.7, -0.5),
+                                        child: Image.network(
+                                          gridViewConjuntosRecord.top!,
+                                          width: 50.0,
+                                          height: 50.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Transform.rotate(
+                                      angle: 6.0214,
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.6, -0.1),
+                                        child: Image.network(
+                                          gridViewConjuntosRecord.bottom!,
+                                          width: 50.0,
+                                          height: 50.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Transform.rotate(
+                                      angle: 0.2618,
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(-0.25, 0.7),
+                                        child: Image.network(
+                                          gridViewConjuntosRecord.shoes!,
+                                          width: 50.0,
+                                          height: 50.0,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
                   ),
                   Container(
-                    width: 398.4,
-                    height: 138.6,
                     decoration: BoxDecoration(
                       color: Color(0xFF41B69E),
                       borderRadius: BorderRadius.circular(40.0),
@@ -284,8 +402,8 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                               color: Color(0xFFFCA379),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('PrendasConj');
                             },
                           ),
                           SizedBox(
@@ -307,8 +425,8 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                               color: Color(0xFF4AC7AC),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('generador');
                             },
                           ),
                           SizedBox(
@@ -330,8 +448,76 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                               color: Color(0xFFFCA379),
                               size: 45.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              final selectedMedia = await selectMedia(
+                                mediaSource: MediaSource.photoGallery,
+                                multiImage: false,
+                              );
+                              if (selectedMedia != null &&
+                                  selectedMedia.every((m) => validateFileFormat(
+                                      m.storagePath, context))) {
+                                setState(() => _model.isDataUploading = true);
+                                var selectedUploadedFiles = <FFUploadedFile>[];
+                                var downloadUrls = <String>[];
+                                try {
+                                  showUploadMessage(
+                                    context,
+                                    'Uploading file...',
+                                    showLoading: true,
+                                  );
+                                  selectedUploadedFiles = selectedMedia
+                                      .map((m) => FFUploadedFile(
+                                            name: m.storagePath.split('/').last,
+                                            bytes: m.bytes,
+                                            height: m.dimensions?.height,
+                                            width: m.dimensions?.width,
+                                            blurHash: m.blurHash,
+                                          ))
+                                      .toList();
+
+                                  downloadUrls = (await Future.wait(
+                                    selectedMedia.map(
+                                      (m) async => await uploadData(
+                                          m.storagePath, m.bytes),
+                                    ),
+                                  ))
+                                      .where((u) => u != null)
+                                      .map((u) => u!)
+                                      .toList();
+                                } finally {
+                                  ScaffoldMessenger.of(context)
+                                      .hideCurrentSnackBar();
+                                  _model.isDataUploading = false;
+                                }
+                                if (selectedUploadedFiles.length ==
+                                        selectedMedia.length &&
+                                    downloadUrls.length ==
+                                        selectedMedia.length) {
+                                  setState(() {
+                                    _model.uploadedLocalFile =
+                                        selectedUploadedFiles.first;
+                                    _model.uploadedFileUrl = downloadUrls.first;
+                                  });
+                                  showUploadMessage(context, 'Success!');
+                                } else {
+                                  setState(() {});
+                                  showUploadMessage(
+                                      context, 'Failed to upload data');
+                                  return;
+                                }
+                              }
+
+                              final imagesCreateData = createImagesRecordData(
+                                path: _model.uploadedFileUrl,
+                                type: 'bottom',
+                              );
+                              var imagesRecordReference =
+                                  ImagesRecord.createDoc(currentUserReference!);
+                              await imagesRecordReference.set(imagesCreateData);
+                              _model.image = ImagesRecord.getDocumentFromData(
+                                  imagesCreateData, imagesRecordReference);
+
+                              setState(() {});
                             },
                           ),
                           SizedBox(

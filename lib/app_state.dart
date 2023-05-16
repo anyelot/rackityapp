@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'backend/backend.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 
@@ -22,6 +23,12 @@ class FFAppState extends ChangeNotifier {
   bool get FiltroPrenda => _FiltroPrenda;
   set FiltroPrenda(bool _value) {
     _FiltroPrenda = _value;
+  }
+
+  bool _Detalles = false;
+  bool get Detalles => _Detalles;
+  set Detalles(bool _value) {
+    _Detalles = _value;
   }
 }
 

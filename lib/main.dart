@@ -18,8 +18,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initFirebase();
 
-  await FlutterFlowTheme.initialize();
-
   final appState = FFAppState(); // Initialize FFAppState
   await appState.initializePersistedState();
 
@@ -40,12 +38,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
-  ThemeMode _themeMode = FlutterFlowTheme.themeMode;
+  ThemeMode _themeMode = ThemeMode.system;
 
   late Stream<BaseAuthUser> userStream;
 
   late AppStateNotifier _appStateNotifier;
   late GoRouter _router;
+
+  final authUserSub = authenticatedUserStream.listen((_) {});
 
   @override
   void initState() {
@@ -61,13 +61,19 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
+  @override
+  void dispose() {
+    authUserSub.cancel();
+
+    super.dispose();
+  }
+
   void setLocale(String language) {
     setState(() => _locale = createLocale(language));
   }
 
   void setThemeMode(ThemeMode mode) => setState(() {
         _themeMode = mode;
-        FlutterFlowTheme.saveThemeMode(mode);
       });
 
   @override
@@ -83,7 +89,6 @@ class _MyAppState extends State<MyApp> {
       locale: _locale,
       supportedLocales: const [Locale('en', '')],
       theme: ThemeData(brightness: Brightness.light),
-      darkTheme: ThemeData(brightness: Brightness.dark),
       themeMode: _themeMode,
       routeInformationParser: _router.routeInformationParser,
       routerDelegate: _router.routerDelegate,
