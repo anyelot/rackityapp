@@ -336,8 +336,8 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                               color: Color(0xFF4AC7AC),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('generador');
                             },
                           ),
                           SizedBox(
@@ -416,8 +416,8 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                               color: Color(0xFF4AC7AC),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('Calendario');
                             },
                           ),
                           SizedBox(
@@ -439,8 +439,8 @@ class _UsuariosWidgetState extends State<UsuariosWidget>
                               color: Color(0xFF4AC7AC),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('Buscador');
                             },
                           ),
                           SizedBox(

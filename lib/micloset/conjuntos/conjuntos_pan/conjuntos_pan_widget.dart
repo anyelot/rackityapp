@@ -562,8 +562,8 @@ class _ConjuntosPanWidgetState extends State<ConjuntosPanWidget>
                               color: Color(0xFF4AC7AC),
                               size: 30.0,
                             ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
+                            onPressed: () async {
+                              context.pushNamed('Buscador');
                             },
                           ),
                           SizedBox(
